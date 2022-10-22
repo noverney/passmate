@@ -19,9 +19,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Login } from "@mui/icons-material";
-import MuiLink from '@mui/material/Link';
 import Copyright from '../utils/Copyright';
-
 
 const pages = ['Product', 'Pricing'];
 const settings: {label: string, onClick: () => void}[] = [{label : 'Login', onClick: () => {window.location.href="Login"}}, {label : 'Help', onClick: () => {window.location.href="Help"}}];
@@ -190,64 +188,11 @@ function App() {
     </AppBar>
       </div>
 
-      <h1>Welcome to PassMate!</h1>
-      <p>PassMate is your mate for everyday. Enjoy the simple way how PassMate make your life easier.</p>
+      <h1>HELP</h1>
 
-      <div className="row">
-        <span className="logos">
-          <a href="https://nextjs.org" target="_blank">
-            <Image
-              width={144}
-              height={144}
-              src={nextLogo}
-              className="logo next"
-              alt="Next logo"
-            />
-          </a>
-        </span>
-        <span className="logos">
-          <a href="https://tauri.app" target="_blank">
-            <Image
-              width={144}
-              height={144}
-              src={tauriLogo}
-              className="logo tauri"
-              alt="Tauri logo"
-            />
-          </a>
-        </span>
-        <span className="logos">
-          <a href="https://reactjs.org" target="_blank">
-            <Image
-              width={144}
-              height={144}
-              src={reactLogo}
-              className="logo react"
-              alt="React logo"
-            />
-          </a>
-        </span>
-      </div>
-
-      <p>...Click on the Tauri, Next, and React logos to learn more.</p>
-
-      <div className="row">
-        <div>
-          <input
-            id="greet-input"
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="Enter a name..."
-          />
-          <button type="button" onClick={() => greet()}>
-            Greet
-          </button>
-          
-        </div>
-      </div>
-
-      <p>{greetMsg}</p>
 
       <Copyright />
+
     </div>
   );
 }

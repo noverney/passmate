@@ -190,65 +190,19 @@ function App() {
     </AppBar>
       </div>
 
-      <h1>Welcome to PassMate!</h1>
-      <p>PassMate is your mate for everyday. Enjoy the simple way how PassMate make your life easier.</p>
+      <h1>Login</h1>
 
-      <div className="row">
-        <span className="logos">
-          <a href="https://nextjs.org" target="_blank">
-            <Image
-              width={144}
-              height={144}
-              src={nextLogo}
-              className="logo next"
-              alt="Next logo"
-            />
-          </a>
-        </span>
-        <span className="logos">
-          <a href="https://tauri.app" target="_blank">
-            <Image
-              width={144}
-              height={144}
-              src={tauriLogo}
-              className="logo tauri"
-              alt="Tauri logo"
-            />
-          </a>
-        </span>
-        <span className="logos">
-          <a href="https://reactjs.org" target="_blank">
-            <Image
-              width={144}
-              height={144}
-              src={reactLogo}
-              className="logo react"
-              alt="React logo"
-            />
-          </a>
-        </span>
-      </div>
+        <Container sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 
-      <p>...Click on the Tauri, Next, and React logos to learn more.</p>
+        </Container>
 
-      <div className="row">
-        <div>
-          <input
-            id="greet-input"
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="Enter a name..."
-          />
-          <button type="button" onClick={() => greet()}>
-            Greet
-          </button>
-          
-        </div>
-      </div>
+      
 
-      <p>{greetMsg}</p>
 
       <Copyright />
+
     </div>
+ 
   );
 }
 
