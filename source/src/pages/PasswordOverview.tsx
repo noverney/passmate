@@ -19,9 +19,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Login } from "@mui/icons-material";
-import MuiLink from '@mui/material/Link';
 import Copyright from '../utils/Copyright';
-
+import { Table } from "@mui/material";
+import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import Password from "../Password/Password.classes";
 
 const pages = ['Product', 'Pricing'];
 const settings: {label: string, onClick: () => void}[] = [{label : 'Login', onClick: () => {window.location.href="Login"}}, {label : 'Help', onClick: () => {window.location.href="Help"}}];
@@ -61,6 +62,29 @@ function App() {
   useEffect(() => {
     console.log(anchorElUser)
   }, [anchorElUser]);
+
+  const columns: GridColDef[] = [
+    { field: 'id', headerName: 'ID', width: 70 },
+    { field: 'Name', headerName: 'Username', width: 130 },
+    { field: 'CreationDate', headerName: 'Creation Datee', width: 130 },
+    {
+      field: 'Password',
+      headerName: 'Password',
+      width: 130,
+    },
+    {
+      field: 'SyncDaviceNumber',
+      headerName: 'Number of Devices',
+      description: 'This column has a value getter and is not sortable.',
+      sortable: false,
+      width: 160,
+    },
+  ];
+  
+  const rows:Password[] = [
+    { id: 1, Name: 'Snow', CreationDate: new Date(), Password: '35', SyncDeviceNumbers: 2},
+    { id: 2, Name: 'Snow', CreationDate: new Date(), Password: '3ewr5', SyncDeviceNumbers: 3}
+  ];
 
   
   return (
@@ -190,22 +214,21 @@ function App() {
     </AppBar>
       </div>
 
-      <h1>Login</h1>
-
-        <Container sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-        <MuiLink color="inherit" href="PasswordOverview">
-          Overview
-        </MuiLink>{' '}
-
-        </Container>
-
-      
+      <h1>Overview</h1>
+      <div style={{ height: 400, width: '100%' }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+      />
+    </div>
 
 
       <Copyright />
 
     </div>
- 
   );
 }
 
