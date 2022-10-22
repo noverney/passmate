@@ -4,6 +4,10 @@ class DevApi {
     static async create_secret(): Promise<string>{
         return Promise.resolve("23910234120934820387893527435");
     };
+
+    static async login(): Promise<string>{
+        return Promise.resolve("23910234120934820387893527435");
+    };
 }
 
 

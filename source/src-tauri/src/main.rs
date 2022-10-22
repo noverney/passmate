@@ -14,6 +14,7 @@ fn get_gpg_home() -> String {
 }
 
 
+
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
 #[tauri::command]
 fn greet(name: &str) -> String {
@@ -22,6 +23,25 @@ fn greet(name: &str) -> String {
 
 #[tauri::command]
 fn create_secret() -> String {
+    // todo: get email and name from user
+
+    let mut gpg = Gpg::new_with_custom_home(get_gpg_home().as_str());
+    let key = gpg
+        .create_key(CreateUserArgs {
+            email: "alice@colomba.link",
+            name: "Alice",
+        });
+    match key {
+        Ok(key) => key.fingerprint,
+        Err(err) => err.to_string(),
+    }
+}
+
+/**
+ * The password it
+ */
+#[tauri::command]
+fn login() -> String {
     let mut gpg = Gpg::new_with_custom_home(get_gpg_home().as_str());
     let key = gpg
         .create_key(CreateUserArgs {
