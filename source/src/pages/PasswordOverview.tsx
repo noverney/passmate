@@ -90,7 +90,7 @@ function App() {
       width: 160,
     },
     {
-      field: 'SyncDaviceNumber',
+      field: 'SyncDeviceNumbers',
       headerName: 'Linked Devices',
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
@@ -101,8 +101,8 @@ function App() {
   ];
   
   const rows:Password[] = [
-    { id: 1, Name: 'BaselHack 2022', CreationDate: new Date(), Password: 'Very Secure', SyncDeviceNumbers: 2, },
-    { id: 2, Name: 'Google', CreationDate: new Date(), Password: 'Admin123', SyncDeviceNumbers: 3, }
+    { id: 1, Name: 'BaselHack 2022', CreationDate: new Date(), Password: 'Very Secure', SyncDeviceNumbers: 2 },
+    { id: 2, Name: 'Google', CreationDate: new Date(), Password: 'Admin123', SyncDeviceNumbers: 3 }
   ];
 
   
@@ -251,9 +251,18 @@ function App() {
     </Stack>
         </Grid>
         <Grid xs={4}>
-        <AddRoundedIcon />
-         <EditRoundedIcon />
-      <DeleteForeverRoundedIcon />
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+               <AddRoundedIcon />
+        </IconButton>
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <EditRoundedIcon />
+        </IconButton>
+        <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <DeleteForeverRoundedIcon />
+        </IconButton>
+        
+         
+      
         </Grid>
       </Grid>
     </Box>
