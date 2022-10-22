@@ -69,6 +69,26 @@ function App() {
           }}>
             create secrest
           </button>
+
+          <button type="button" onClick={async () => {
+            let result = await Api.get_public_key("00C2E4D9C3FBA617D64ACD77676ECB74B52F5A72");
+            setMessage(result);
+          }}>
+            read public key
+          </button>
+
+
+          <button type="button" onClick={async () => {
+            Api.login("00C2E4D9C3FBA617D64ACD77676ECB74B52F5A72").catch((e) => {
+                console.log(e);
+            }).then((result) => {
+              console.log(result)
+              setMessage(result);
+            });
+          }}>
+            login
+          </button>
+
         </div>
       </div>
 
