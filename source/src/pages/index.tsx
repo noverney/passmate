@@ -16,7 +16,8 @@ function App() {
 
   async function create_secret() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    await invoke("create_secret");
+   let result =  await invoke("create_secret");
+   setGreetMsg(result as string);
   }
 
   return (
