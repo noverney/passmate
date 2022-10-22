@@ -14,6 +14,11 @@ function App() {
     setGreetMsg(await invoke("greet", { name }));
   }
 
+  async function create_secret() {
+    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
+    await invoke("create_secret");
+  }
+
   return (
     <div className="container">
       <h1>Welcome to Tauri!</h1>
@@ -65,6 +70,10 @@ function App() {
           />
           <button type="button" onClick={() => greet()}>
             Greet
+          </button>
+
+          <button type="button" onClick={() => create_secret()}>
+            create secrest
           </button>
         </div>
       </div>
