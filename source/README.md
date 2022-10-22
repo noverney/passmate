@@ -67,3 +67,24 @@ sec  ed25519/2962E1B2176EF74C
 gpg> 
 
 ```
+
+
+# Prototype 1 
+
+## Workflow 
+
+1. Wait for user login 
+   2. The user needs to click the login button and ensure that the yubikey is connected
+   3. The login process will then authenticate the users by a encryption challenge
+      1. Successful login will then trigger the next step 2.
+      2. Failed login will then trigger a error message
+      3. User timeout will then trigger a error message
+2. Try to show the user the list of all passwords
+   1. If keystore does not exist, create a new keystore
+      2. Show the create new keystore dialog: ask for device name
+   2. If keystore exists, load the keystore
+      1. Load the keystore go to step 3 
+3. Manage Passwords 
+    1. Clone from a repo  
+    2. CRUD operations on passwords
+    3. Sync with remote 
