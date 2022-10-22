@@ -4,21 +4,15 @@ import Image from "next/image";
 import reactLogo from "../assets/react.svg";
 import tauriLogo from "../assets/tauri.svg";
 import nextLogo from "../assets/next.svg";
+import Api from "../api";
+
+
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
+  const [greetMsg, setMessage] = useState("");
   const [name, setName] = useState("");
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
-  }
 
-  async function create_secret() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-   let result =  await invoke("create_secret");
-   setGreetMsg(result as string);
-  }
 
   return (
     <div className="container">
@@ -69,11 +63,10 @@ function App() {
             onChange={(e) => setName(e.currentTarget.value)}
             placeholder="Enter a name..."
           />
-          <button type="button" onClick={() => greet()}>
-            Greet
-          </button>
-
-          <button type="button" onClick={() => create_secret()}>
+          <button type="button" onClick={async () => {
+            let result = await Api.create_secret();
+            setMessage(result);
+          }}>
             create secrest
           </button>
         </div>
