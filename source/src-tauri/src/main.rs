@@ -100,8 +100,8 @@ fn update_entry_user_name(fingerprint: &str, uuid: &str, user_name: &str) -> Res
 }
 
 #[tauri::command]
-fn sync(remoteurl: &str, fingerprint: &str) -> Result<(), String>{
-    API::sync(remoteurl, fingerprint)
+fn sync(remote_url: &str, fingerprint: &str) -> Result<(), String>{
+    API::sync(remote_url, fingerprint)
 }
 
 /**

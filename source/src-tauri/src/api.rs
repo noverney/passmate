@@ -3,6 +3,7 @@ use dcore::{Document, Identity};
 use dcore::document::DocumentNewOptions;
 use dcore::gpg::Gpg;
 use dcore::resource::Resource;
+use dcore::sync_git::GitSync;
 use lib0::any::Any;
 use uuid::Uuid;
 
@@ -324,7 +325,7 @@ impl API {
         Ok(id)
     }
 
-    pub fn sync(remoteurl: &str, fingerprint: &str) -> Result<(), String>{
+    pub fn sync(remote_url: &str, fingerprint: &str) -> Result<(), String>{
 
         let doc_dir = "./passmate/";
         let doc = Document::new(DocumentNewOptions {
@@ -365,11 +366,11 @@ impl API {
                 _ => Err("".to_string()),
             }
         };
+        let mut doc = doc.unwrap();
+        let result = doc.config_set_remote(remote_url);
 
-        let doc = doc.unwrap().config_set_remote("");
-
-        if doc.is_err() {
-            return match doc {
+        if result.is_err() {
+            return match result {
                 Err(err) => Err(err.to_string()),
                 _ => Err("".to_string()),
             }
@@ -382,8 +383,7 @@ impl API {
         // let remote = doc.config_get_remote().unwrap();
         // assert_eq!(remote, "git@github.com:fuubi/gpgtest.git");
 
-        /*
-        let sync = GitSync::sync(doc.unwrap());
+        let sync = GitSync::sync(doc);
 
         if sync.is_err() {
             return match sync {
@@ -392,7 +392,6 @@ impl API {
             }
         };
 
-*/
 
         Ok(())
     }

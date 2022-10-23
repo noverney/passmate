@@ -56,8 +56,8 @@ class Api {
         return invoke("get_all_entries", args);
     };
 
-    static async sync(remoteurl: string, fingerprint: string): Promise<void>{
-        return invoke("sync", {remoteurl: remoteurl, fingerprint: fingerprint});
+    static async sync(remoteUrl: string, fingerprint: string): Promise<void>{
+        return invoke("sync", {remoteurl: remoteUrl, fingerprint: fingerprint});
     };
 }
 

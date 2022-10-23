@@ -128,7 +128,19 @@ function App() {
               setMessage(JSON.stringify(result));
             });
           }}>
-            add entry
+            get all entries
+          </button>
+
+
+          <button type="button" onClick={async () => {
+            Api.sync( {fingerprint: "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA", remoteUrl: "http://...."}).catch((e) => {
+              console.log(e);
+            }).then((result) => {
+              console.log(result);
+              setMessage(JSON.stringify(result));
+            });
+          }}>
+            get all entries
           </button>
 
         </div>
