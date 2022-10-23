@@ -18,7 +18,7 @@ Pasword Overview
 Password object 
 ```js
 {
-    email: string,
+    userName: string,
     creationDate: date,
     password: string,
     syncDeviceNumbers: number,
