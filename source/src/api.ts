@@ -14,6 +14,12 @@ class DevApi {
     static async get_all_users_from_keystore(): Promise<LoginUser[]> {
         return Promise.resolve([{ figerprint: "23910234120934820387893527436", userId: "BaselHack2022 <info@basel.hack>" }, { figerprint: "23910234120934820387893527437", userId: "Joel <info@basel.hack>" }, { figerprint: "23910234120934820387893527435", userId: "David <info@basel.hack>" }]);
     };
+
+    static async init_local_passmate(deviceName: string, fingerprint: string): Promise<void>{
+        return Promise.resolve();
+    };
+
+
 }
 
 
@@ -32,6 +38,10 @@ class DevApi {
 //
 //     static async get_all_users_from_keystore(): Promise<string>{
 //         return invoke("get_all_users_from_keystore");
+//     };
+//
+//     static async init_local_passmate(deviceName: string, fingerprint: string): Promise<void>{
+//         return invoke("init_local_passmate", {deviceName: deviceName, fingerprint: fingerprint});
 //     };
 //
 // }
