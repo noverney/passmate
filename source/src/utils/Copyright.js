@@ -7,9 +7,12 @@ export default function Copyright() {
     <div className="footer">
     <Typography variant="body2" color="text.secondary" align="center">
     {'Copyright © '}
-    <MuiLink color="inherit" href="https://mui.com/">
-      passmate
+    <MuiLink color="inherit" href="/">
+      PassMate
     </MuiLink>{' '}
+    <MuiLink color="inherit" href="https://www.baselhack.ch/">
+      @BaselHack
+    </MuiLink>{' OpenSource '}
     {new Date().getFullYear()}.
   </Typography>
     </div>

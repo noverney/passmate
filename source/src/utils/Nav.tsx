@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-import { invoke } from "@tauri-apps/api/tauri";
 import Image from "next/image";
-import reactLogo from "../assets/react.svg";
-import tauriLogo from "../assets/tauri.svg";
-import nextLogo from "../assets/next.svg";
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,12 +14,10 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Login } from "@mui/icons-material";
-import MuiLink from '@mui/material/Link';
-import Copyright from '../utils/Copyright';
+import PassMateLogo from '../assets/PassMateLogo.svg';
 
 export default function Nav() {
-const pages = ['Product', 'Pricing'];
+const pages = [];
 const settings: {label: string, onClick: () => void}[] = [{label : 'Login', onClick: () => {window.location.href="Login"}},{label : 'Password Overview', onClick: () => {window.location.href="PasswordOverview"}}, {label : 'Help', onClick: () => {window.location.href="Help"}}];
 
 const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -61,7 +55,6 @@ return (
       <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -77,8 +70,15 @@ return (
               textDecoration: 'none',
             }}
           >
-            LOGO
+             <Image
+              width={144}
+              height={50}
+              src={PassMateLogo}
+              className="PassMate"
+              alt="PassMateLogo"
+            />
           </Typography>
+         
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
