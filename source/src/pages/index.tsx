@@ -48,7 +48,7 @@ function App() {
        <Box sx={{  display: { xs: 'flex', }}}>
         <div className='card'>
        <Card sx={{ maxWidth: 345 }}>
-       <CardActionArea>
+       <CardActionArea className="cardboxHight">
         <div className="cardImg">
          <Image
               width={144}
@@ -63,9 +63,12 @@ function App() {
             Problem
           </Typography>
           <Typography variant="body2" color="text.secondary">
-             <div className="hl">86%</div> of people use passwords that are leaked.
-              158 accounts hacked every second.
-             Compromised passwords cost SMBs $0.3M per attack.
+            <ul>
+              <li><mark> 86% </mark>of people use passwords that are leaked.</li>
+              <li><mark>158</mark> accounts hacked <mark>every second</mark>.</li>
+              <li> Compromised passwords cost <mark>SMBs $0.3M per attack.</mark></li>
+            </ul>
+                      
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -73,7 +76,7 @@ function App() {
       </div>
       <div className='card'>
        <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea className="cardboxHight">
       <div className="cardImg">
          <Image
           width={144}
@@ -89,9 +92,10 @@ function App() {
             Solution
           </Typography>
           <Typography variant="body2" color="text.secondary">
-             The only offlinbe-first cloud password Manager,
-             Offline sync using multiple Devices.
-             Master login without a password. 
+            <ul>
+              <li>The only <mark>offline-first cloud</mark> password Manager, Offline sync using <mark> multiple Devices</mark>.</li>
+              <li>Master login <mark>without</mark> a password. </li>
+            </ul>
 
           </Typography>
         </CardContent>
@@ -100,7 +104,7 @@ function App() {
       </div>
       <div className='card'>
        <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
+      <CardActionArea className="cardboxHight">
       <div className="cardImg">
           <Image
               width={144}
@@ -115,9 +119,12 @@ function App() {
             Novelty / Benefits
           </Typography>
           <Typography variant="body2" color="text.secondary">
-             Manage all their passwords in ot just one offline device but multiple.
-             Multiple devices sync data with encryption by default (end-to-end encryption)
-             No complex setup for a cloud environment. Can connect to Github or Gitlab. 
+            <ul>
+              <li>Manage <mark>all their passwords </mark>in not just one offline device but multiple.</li>
+              <li>Multiple devices sync data with <mark>encryption by default (end-to-end encryption)</mark>.</li>
+              <li><mark>No complex setup</mark> for a cloud environment. Can connect to <mark>Github or Gitlab</mark>.</li>
+            </ul>
+                           
           </Typography>
         </CardContent>
       </CardActionArea>

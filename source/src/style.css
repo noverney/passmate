@@ -86,17 +86,27 @@ button {
 }
 .cardBox{
   align-self: center;
+  
 }
 .card{
   margin: 10px;
+  
 }
 .cardImg{
 padding-top: 10px;
 margin-top: 10px;
 
 }
-.hl{
-  color:blue;
+.cardboxHight{
+  height: 400px;
+}
+
+li {
+  text-align: left;
+}
+mark {
+  background: none;
+  color: rgb(7, 7, 66);
 }
 
 
