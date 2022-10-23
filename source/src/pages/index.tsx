@@ -110,6 +110,26 @@ function App() {
             init local passmate
           </button>
 
+          <button type="button" onClick={async () => {
+            Api.add_new_password_entry( {fingerprint: "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA", url: "testurl", password: "1234", userName: "bhack"}).catch((e) => {
+              console.log(e);
+            }).then((result) => {
+              setMessage(result);
+            });
+          }}>
+           add entry
+          </button>
+
+          <button type="button" onClick={async () => {
+            Api.get_all_entries( {fingerprint: "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA"}).catch((e) => {
+              console.log(e);
+            }).then((result) => {
+              setMessage(result);
+            });
+          }}>
+            add entry
+          </button>
+
         </div>
       </div>
 

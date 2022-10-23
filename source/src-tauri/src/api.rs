@@ -3,6 +3,8 @@ use dcore::{Document, Identity};
 use dcore::document::DocumentNewOptions;
 use dcore::gpg::Gpg;
 use dcore::resource::Resource;
+use lib0::any::Any;
+use uuid::Uuid;
 
 pub struct API {
 
@@ -103,7 +105,13 @@ impl API {
             }
         };
 
-        let resource = Resource::new(&String::from("passwords"));
+        let resource = doc.unwrap().add_resource("passwords".to_string());
+        if resource.is_err() {
+            return match resource {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
         Ok(())
     }
 
@@ -113,10 +121,70 @@ impl API {
     }
 
 
-    pub fn add_new_password_entry() -> Result<(), String>{
-        Ok(())
+    pub fn add_new_password_entry(fingerprint: &str, user_name: &str, password: &str, url: &str) -> Result<String, String>{
+        let dir = "./passmate";
+        let path = PathBuf::from(dir);
+        let mut doc = Document::new(DocumentNewOptions {
+            directory: PathBuf::from(dir),
+            identity_fingerprint: fingerprint.to_string(),
+            name: String::from("passmate"),
+        }).unwrap();
+
+        let ready_doc = doc.load();
+        if ready_doc.is_err() {
+            return match ready_doc {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+        let resource = doc.resources.get("passwords");
+        if resource.is_none() {
+            return Err("The passwords resource does not exist.".to_string());
+        }
+
+
+        let id = Uuid::new_v4().to_string();
+       // user_name: user_name.to_string(),
+        //password: password.to_string(),
+        //url: url.to_string(),
+
+        let key = format!("{}.userName", id);
+        doc.update_resource_with_key_value("passwords", key.as_str(), user_name);
+
+        let key = format!("{}.password", id);
+        doc.update_resource_with_key_value("passwords", key.as_str(), password);
+
+        let key = format!("{}.url", id);
+        doc.update_resource_with_key_value("passwords", key.as_str(), url);
+        Ok(id)
+
     }
 
+
+    pub fn get_all_entries(fingerprint: &str) -> Result<String, String>{
+        let dir = "./passmate";
+        let path = PathBuf::from(dir);
+        let mut doc = Document::new(DocumentNewOptions {
+            directory: PathBuf::from(dir),
+            identity_fingerprint: fingerprint.to_string(),
+            name: String::from("passmate"),
+        }).unwrap();
+
+        let ready_doc = doc.load();
+        if ready_doc.is_err() {
+            return match ready_doc {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+        let resource = doc.resources.get("passwords");
+        if resource.is_none() {
+            return Err("The passwords resource does not exist.".to_string());
+        }
+        Ok(resource.unwrap().get_content())
+    }
 
     pub fn sync() -> Result<(), String>{
         Ok(())
