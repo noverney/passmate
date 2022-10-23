@@ -71,7 +71,7 @@ function App() {
           </button>
 
           <button type="button" onClick={async () => {
-            let result = await Api.get_public_key("00C2E4D9C3FBA617D64ACD77676ECB74B52F5A72");
+            let result = await Api.get_public_key("C9951059A55E31549969486DEB2500C2918FDBF8");
             setMessage(result);
           }}>
             read public key
@@ -79,7 +79,7 @@ function App() {
 
 
           <button type="button" onClick={async () => {
-            Api.login("00C2E4D9C3FBA617D64ACD77676ECB74B52F5A72").catch((e) => {
+            Api.login("C9951059A55E31549969486DEB2500C2918FDBF8").catch((e) => {
                 console.log(e);
             }).then((result) => {
               console.log(result)
@@ -101,7 +101,7 @@ function App() {
           </button>
 
           <button type="button" onClick={async () => {
-            Api.init_local_passmate("local-dev-1", "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA").catch((e) => {
+            Api.init_local_passmate("device-0", "6BC17AA7128D3E3EF6B15CBE17F85E26207957F9").catch((e) => {
               console.log(e);
             }).then((result) => {
               setMessage(JSON.stringify("ok"));
@@ -111,7 +111,7 @@ function App() {
           </button>
 
           <button type="button" onClick={async () => {
-            Api.add_new_password_entry( {fingerprint: "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA", url: "testurl", password: "1234", userName: "bhack"}).catch((e) => {
+            Api.add_new_password_entry( {fingerprint: "6BC17AA7128D3E3EF6B15CBE17F85E26207957F9", url: "testurl", password: "1234", userName: "bhack"}).catch((e) => {
               console.log(e);
             }).then((result) => {
               setMessage(result);
@@ -121,7 +121,7 @@ function App() {
           </button>
 
           <button type="button" onClick={async () => {
-            Api.get_all_entries( {fingerprint: "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA"}).catch((e) => {
+            Api.get_all_entries( {fingerprint: "6BC17AA7128D3E3EF6B15CBE17F85E26207957F9"}).catch((e) => {
               console.log(e);
             }).then((result) => {
               console.log(result);
@@ -133,14 +133,14 @@ function App() {
 
 
           <button type="button" onClick={async () => {
-            Api.sync( {fingerprint: "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA", remoteUrl: "http://...."}).catch((e) => {
+            Api.sync( {fingerprint: "6BC17AA7128D3E3EF6B15CBE17F85E26207957F9", remoteUrl: "git@github.com:fuubi/baselhack-passmate-demo.git"}).catch((e) => {
               console.log(e);
             }).then((result) => {
               console.log(result);
               setMessage(JSON.stringify(result));
             });
           }}>
-            get all entries
+           sync
           </button>
 
         </div>

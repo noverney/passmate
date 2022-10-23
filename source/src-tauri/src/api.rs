@@ -206,9 +206,18 @@ impl API {
                     let password = entry.get("password");
                     let url = entry.get("url");
                     let passwordEntry = PasswordEntry {
-                        user_name: user_name.unwrap().to_string(),
-                        password: password.unwrap().to_string(),
-                        url: url.unwrap().to_string(),
+                        user_name: match user_name {
+                            Some(user_name) => user_name.to_string(),
+                            None => "".to_string(),
+                        },
+                        password: match password {
+                            Some(password) => password.to_string(),
+                            None => "".to_string(),
+                        },
+                        url: match url {
+                            Some(url) => url.to_string(),
+                            None => "".to_string(),
+                        },
                         uuid: uuid.to_string(),
                     };
                     passwordEntries.push(passwordEntry);
@@ -367,6 +376,13 @@ impl API {
             }
         };
         let mut doc = doc.unwrap();
+        let result = doc.load();
+        if result.is_err() {
+            return match result {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
         let result = doc.config_set_remote(remote_url);
 
         if result.is_err() {

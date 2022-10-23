@@ -6,7 +6,7 @@ class DevApi {
     };
 
     static async login(): Promise<string>{
-        return Promise.resolve("23910234120934820387893527435");
+        return Promise.resolve("C9951059A55E31549969486DEB2500C2918FDBF8");
     };
 
     static async get_all_users_from_keystore(): Promise<{figerprint: string, userId: string}[]>{
