@@ -110,7 +110,7 @@ fn login(fingerprint: &str) -> Result<String, String>{
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login, get_all_users_from_keystore, init_local_passmate, add_new_password_entry, get_all_entries])
+        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login, get_all_users_from_keystore, init_local_passmate, add_new_password_entry, get_all_entries, sync])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

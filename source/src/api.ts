@@ -16,6 +16,11 @@ class DevApi {
     static async init_local_passmate(deviceName: string, fingerprint: string): Promise<void>{
         return Promise.resolve();
     };
+
+    static async sync(remoteurl: string, fingerprint: string): Promise<void>{
+        return Promise.resolve();
+    };
+
 }
 
 
@@ -46,6 +51,10 @@ class Api {
 
     static async  get_all_entries(args: {fingerprint: string}): Promise<string>{
         return invoke("get_all_entries", args);
+    };
+
+    static async sync(remoteurl: string, fingerprint: string): Promise<void>{
+        return invoke("sync", {remoteurl: remoteurl, fingerprint: fingerprint});
     };
 }
 
