@@ -1,18 +1,24 @@
+import { Output } from "@mui/icons-material";
 import { Button, TextField, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import React from "react";
+import DevApi from "../api";
 
-interface PasswordFormInterface {
+export interface PasswordFormInterface {
   name: string;
   paswword: string;
   url: string;
 }
 
-export const AddPaddword: React.FunctionComponent = () => {
+interface AddPaddwordProbs {
+  addNewPassword: (password: PasswordFormInterface) => void;
+}
+
+export const AddPassword: React.FunctionComponent<AddPaddwordProbs> = ({addNewPassword}) => {
   var [addForm, setAddForm] = React.useState<PasswordFormInterface>({});
 
   var savePassword = () => {
-    console.log(addForm);
+    addNewPassword(addForm);
   };
 
 
