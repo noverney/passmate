@@ -10,7 +10,7 @@ use dcore::Identity;
 use dcore::identity::GetIdentityArgs;
 use tauri::api::Error::Command;
 use tauri::Error;
-use crate::api::{API, User};
+use crate::api::{API, PasswordEntry, User};
 
 
 fn get_gpg_home() -> String {
@@ -71,6 +71,17 @@ fn init_local_passmate(device_name: &str, fingerprint: &str) -> Result<(), Strin
     API::init_local_passmate(device_name, fingerprint)
 }
 
+#[tauri::command]
+fn add_new_password_entry(fingerprint: &str, user_name: &str, password: &str, url: &str) -> Result<String, String>{
+    API::add_new_password_entry(fingerprint, user_name,  password, url)
+}
+
+
+#[tauri::command]
+fn get_all_entries(fingerprint: &str) -> Result<String, String>{
+    API::get_all_entries(fingerprint)
+}
+
 
 
 /**
@@ -99,7 +110,7 @@ fn login(fingerprint: &str) -> Result<String, String>{
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login, get_all_users_from_keystore, init_local_passmate])
+        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login, get_all_users_from_keystore, init_local_passmate, add_new_password_entry, get_all_entries])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

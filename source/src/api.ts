@@ -39,6 +39,14 @@ class Api {
     static async init_local_passmate(deviceName: string, fingerprint: string): Promise<void>{
         return invoke("init_local_passmate", {deviceName: deviceName, fingerprint: fingerprint});
     };
+
+    static async  add_new_password_entry(args: {fingerprint: string, userName: string, password: string, url: string}): Promise<void>{
+        return invoke("add_new_password_entry", args);
+    };
+
+    static async  get_all_entries(args: {fingerprint: string}): Promise<string>{
+        return invoke("get_all_entries", args);
+    };
 }
 
 // export default DevApi;
