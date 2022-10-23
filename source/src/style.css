@@ -84,14 +84,21 @@ button {
 #greet-input {
   margin-right: 5px;
 }
-
 .cardBox{
   align-self: center;
-  margin: 10px;
 }
 .card{
   margin: 10px;
 }
+.cardImg{
+padding-top: 10px;
+margin-top: 10px;
+
+}
+.hl{
+  color:blue;
+}
+
 
 @media (prefers-color-scheme: dark) {
   :root {

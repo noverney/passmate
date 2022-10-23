@@ -6,3 +6,32 @@ Search
 Tabelle -> 
 
 npm install @mui/x-data-grid
+
+<Card sx={{ maxWidth: 400 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image="..\assets\problem-icon.png"
+          alt="Problem"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            Problem
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+          <p>86% of people use passwords that are leaked.</p>
+          <p> 158 accounts hacked every second. </p>
+          <p>Compromised passwords cost SMBs $0.3M per Attack.</p>
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
+
+
+      const [path, setPath] = React.useState<string>();
+  const appDirPath =  appDir().then((appDir) =>{
+  join(appDir, "appDirPath, '../assets/problemIcon.jpg'").then(filePath => {
+      setPath(filePath)
+  })
+  });
