@@ -17,7 +17,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-import { Login } from "@mui/icons-material";
+import { Login, Password } from "@mui/icons-material";
 import Copyright from "../utils/Copyright";
 import { Popover, Table } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
@@ -36,6 +36,8 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Nav from '../utils/Nav';
 import { CellWithIcon } from "../components/cell-component";
 import { AddPaddword as PasswordForm } from "../components/AddPassword.form";
+import { useLocalStorage } from "../hooks/userStorage.hook";
+import { PasswordCell } from "../components/tableCell/password.cell";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -49,7 +51,12 @@ const Item = styled(Paper)(({ theme }) => ({
 function App() {
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [fingerprint, setFingerPrint] = React.useState<string>("");
 
+  React.useEffect(()=>{
+    var storageFinger = localStorage.getItem("fingerPrint");
+    setFingerPrint(storageFinger)
+  }, [])
   
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -76,6 +83,7 @@ function App() {
       field: "Password",
       headerName: "Password",
       width: 160,
+      renderCell: PasswordCell,
     },
     {
       field: "SyncDeviceNumbers",
@@ -126,6 +134,10 @@ function App() {
         <PasswordForm />
       </Popover>     
        <h1>Password Overview</h1>
+       <Typography component="h5">
+        {fingerprint} was used
+       </Typography>
+
 
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>

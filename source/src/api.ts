@@ -3,11 +3,13 @@
 export interface LoginUser { figerprint: string, userId: string }
 
 class DevApi {
+
+
     static async create_secret(): Promise<string> {
         return Promise.resolve("23910234120934820387893527435");
     };
 
-    static async login(): Promise<string> {
+    static async login(fingerprint: string): Promise<string> {
         return Promise.resolve("23910234120934820387893527435");
     };
 

@@ -6,15 +6,25 @@ import Nav from "../utils/Nav";
 import DevApi, { LoginUser } from "../api";
 import { User } from "../components/User.component";
 import { Box } from "@mui/material";
+import { useLocalStorage } from "../hooks/userStorage.hook";
 
 function App() {
   var [listOfuser, setListOfUser] = React.useState([]);
+
+  const [_, setFingerPrint] = useLocalStorage("fingerPrint", undefined)
 
   React.useEffect(() => {
     DevApi.get_all_users_from_keystore().then((data: LoginUser[]) => {
       setListOfUser(data);
     });
   }, []);
+
+  var handleLogin = (user: LoginUser) => {
+      DevApi.login(user.figerprint).then((data: string) => {
+        setFingerPrint(data);
+        window.location.href = "PasswordOverview"
+      })
+  }
 
   return (
     <div className="container">
@@ -29,7 +39,7 @@ function App() {
         }}
       >
         {listOfuser.map((user: LoginUser) => {
-          return <User user={user}></User>;
+          return <div onClick={() => handleLogin(user)}><User user={user}></User></div>;
         })}
       </Container>
       <Copyright />
