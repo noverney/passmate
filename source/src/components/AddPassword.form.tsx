@@ -9,9 +9,7 @@ interface PasswordFormInterface {
 }
 
 export const AddPaddword: React.FunctionComponent = () => {
-  var [addForm, setAddForm] = React.useState<PasswordFormInterface>(
-    {}
-  );
+  var [addForm, setAddForm] = React.useState<PasswordFormInterface>({});
 
   var savePassword = () => {
     console.log(addForm);
