@@ -20,6 +20,10 @@ class DevApi {
     static async  get_all_entries(args: {fingerprint: string}): Promise<{password: string, url: string, userName: string, uuid: string}[]>{
         return Promise.resolve([{password: "23910234120934820387893527435", url: "https://basel.hack", userName: "BaselHack2022", uuid: "23910234120934820387893527435"}]);
     };
+    static async sync(remoteurl: string, fingerprint: string): Promise<void>{
+        return Promise.resolve();
+    };
+
 }
 
 
@@ -50,6 +54,10 @@ class Api {
 
     static async  get_all_entries(args: {fingerprint: string}): Promise<string>{
         return invoke("get_all_entries", args);
+    };
+
+    static async sync(remoteurl: string, fingerprint: string): Promise<void>{
+        return invoke("sync", {remoteurl: remoteurl, fingerprint: fingerprint});
     };
 }
 

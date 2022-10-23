@@ -99,6 +99,11 @@ fn update_entry_user_name(fingerprint: &str, uuid: &str, user_name: &str) -> Res
     API::update_entry_user_name(fingerprint, uuid, user_name)
 }
 
+#[tauri::command]
+fn sync(remoteurl: &str, fingerprint: &str) -> Result<(), String>{
+    API::sync(remoteurl, fingerprint)
+}
+
 /**
  * The password it
  */
@@ -128,7 +133,8 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             greet, create_secret, get_public_key, login, get_all_users_from_keystore,
             init_local_passmate, add_new_password_entry, get_all_entries,
-            update_entry_password, update_entry_url, update_entry_user_name
+            update_entry_password, update_entry_url, update_entry_user_name,
+            sync
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

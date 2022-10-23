@@ -324,7 +324,76 @@ impl API {
         Ok(id)
     }
 
-    pub fn sync() -> Result<(), String>{
+    pub fn sync(remoteurl: &str, fingerprint: &str) -> Result<(), String>{
+
+        let doc_dir = "./passmate/";
+        let doc = Document::new(DocumentNewOptions {
+            directory: PathBuf::from(doc_dir),
+            identity_fingerprint: fingerprint.to_string(),
+            name: String::from("name"),
+        }).unwrap();
+
+        let mut gpg = Gpg::new();
+
+        let key =  gpg.get_public_key(&fingerprint);
+        if key.is_err() {
+            return  match key {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+        let key = key.unwrap();
+
+        let identity = Identity::from_key(key);
+
+        let publicKey = identity.get_armored_public_key();
+        if publicKey.is_err() {
+            return  match publicKey {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+        let publicKey = publicKey.unwrap();
+
+        let doc = doc
+            .init(&fingerprint.to_string(), &publicKey);
+
+        if doc.is_err() {
+            return match doc {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+        let doc = doc.unwrap().config_set_remote("");
+
+        if doc.is_err() {
+            return match doc {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+        //
+        // //let content = doc.resources.get("config").unwrap().get_content();
+        // //assert_eq!(content, "..., just for debugging");
+        //
+        // let remote = doc.config_get_remote().unwrap();
+        // assert_eq!(remote, "git@github.com:fuubi/gpgtest.git");
+
+        /*
+        let sync = GitSync::sync(doc.unwrap());
+
+        if sync.is_err() {
+            return match sync {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+*/
+
         Ok(())
     }
 
