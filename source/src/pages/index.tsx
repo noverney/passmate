@@ -22,6 +22,7 @@ import { Login } from "@mui/icons-material";
 import MuiLink from '@mui/material/Link';
 import Copyright from '../utils/Copyright';
 import Nav from '../utils/Nav';
+import Heading from '../assets/Heading.svg';
 
 
 function App() {
@@ -30,10 +31,19 @@ function App() {
     <div className="container">
       <Nav />
 
-      <h1>Welcome to PassMate!</h1>
-      <p>PassMate is your mate for everyday. Enjoy the simple way how PassMate make your life easier.</p>
+      <Typography>
 
+      <h1>Welcome to PasswordMate!</h1>
+      <p>PassMate is your mate for everyday. Enjoy the simple way how PasswordMate make your life easier.</p>
 
+      <Image
+              width={700}
+              height={400}
+              src={Heading}
+              className="Heading"
+              alt="Overview about the different password managers"
+            />
+      </Typography>
 
       <Copyright />
     </div>
