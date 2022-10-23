@@ -89,6 +89,17 @@ function App() {
             login
           </button>
 
+          <button type="button" onClick={async () => {
+            Api.get_all_users_from_keystore().catch((e) => {
+              console.log(e);
+            }).then((result) => {
+              console.log(result)
+              setMessage(JSON.stringify(result));
+            });
+          }}>
+            get all users
+          </button>
+
         </div>
       </div>
 

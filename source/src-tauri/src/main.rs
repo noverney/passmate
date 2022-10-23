@@ -3,11 +3,14 @@
     windows_subsystem = "windows"
 )]
 
+mod api;
+
 use dcore::gpg::{CreateUserArgs, Gpg};
 use dcore::Identity;
 use dcore::identity::GetIdentityArgs;
+use tauri::api::Error::Command;
 use tauri::Error;
-
+use crate::api::{API, User};
 
 
 fn get_gpg_home() -> String {
@@ -15,6 +18,8 @@ fn get_gpg_home() -> String {
     std::fs::create_dir_all("./.test/gpghome");
     String::from(gpghome)
 }
+
+
 
 
 
@@ -56,6 +61,13 @@ fn get_public_key(fingerprint: &str) -> String {
 
 
 
+#[tauri::command]
+fn get_all_users_from_keystore() -> Result<Vec<User>, String>{
+    API::get_all_users_from_keystore()
+}
+
+
+
 /**
  * The password it
  */
@@ -82,7 +94,7 @@ fn login(fingerprint: &str) -> Result<String, String>{
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login])
+        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login, get_all_users_from_keystore])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
