@@ -22,7 +22,7 @@ import { Login } from "@mui/icons-material";
 import Copyright from '../utils/Copyright';
 
 const pages = ['Product', 'Pricing'];
-const settings: {label: string, onClick: () => void}[] = [{label : 'Login', onClick: () => {window.location.href="Login"}}, {label : 'Help', onClick: () => {window.location.href="Help"}}];
+const settings: {label: string, onClick: () => void}[] = [{label : 'Login', onClick: () => {window.location.href="Login"}},{label : 'Password Overview', onClick: () => {window.location.href="PasswordOverview"}}, {label : 'Help', onClick: () => {window.location.href="Help"}}];
   
 
 function App() {

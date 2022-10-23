@@ -22,33 +22,19 @@ import Copyright from "../utils/Copyright";
 import { Popover, Table } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import Password from "../Password/Password.classes";
-import AddRoundedIcon from "@mui/icons-material/AddRounded";
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import { Icon } from '@mui/material';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Autocomplete from '@mui/material/Autocomplete';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Unstable_Grid2';
+import Nav from '../utils/Nav';
 
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import Autocomplete from "@mui/material/Autocomplete";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Unstable_Grid2";
-import { CellWithIcon } from "../components/cell-component";
-import { AddPaddword as PasswordForm } from "../components/AddPassword.form";
-
-const pages = ["Product", "Pricing"];
-const settings: { label: string; onClick: () => void }[] = [
-  {
-    label: "Login",
-    onClick: () => {
-      window.location.href = "Login";
-    },
-  },
-  {
-    label: "Help",
-    onClick: () => {
-      window.location.href = "Help";
-    },
-  },
-];
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -59,53 +45,18 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
-  }
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
+   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const [passwordFormAnchore, setPasswordFormAnchore] =
-    useState<HTMLButtonElement | null>(null);
-  const addPaddword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setPasswordFormAnchore(event.currentTarget);
-    console.log("add password", event.currentTarget);
-  };
-  const handlePasswordFormClose = () => {
-    setPasswordFormAnchore(null);
-  };
-
-  const handleOpenUserMenuPoint = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  useEffect(() => {
-    console.log(anchorElUser);
-  }, [anchorElUser]);
-
+  
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 30 },
     { field: "Name", headerName: "Username", width: 160 },
@@ -150,148 +101,7 @@ function App() {
 
   return (
     <div className="container">
-      <Popover
-        id="PasswordPopOver"
-        open={Boolean(passwordFormAnchore)}
-        anchorEl={passwordFormAnchore}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "left",
-        }}
-        onClose = {handlePasswordFormClose} 
-      >
-        <PasswordForm />
-      </Popover>
-      <div className="Navi">
-        <AppBar position="static">
-          <Container maxWidth="xl">
-            <Toolbar disableGutters>
-              <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-              <Typography
-                variant="h6"
-                noWrap
-                component="a"
-                href="/"
-                sx={{
-                  mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                LOGO
-              </Typography>
-
-              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-                <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleOpenNavMenu}
-                  color="inherit"
-                >
-                  <MenuIcon />
-                </IconButton>
-
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorElNav}
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  open={Boolean(anchorElNav)}
-                  onClose={handleCloseNavMenu}
-                  sx={{
-                    display: { xs: "block", md: "none" },
-                  }}
-                >
-                  {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
-                      <Typography textAlign="center">{page}</Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-              <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-              <Typography
-                variant="h5"
-                noWrap
-                component="a"
-                href=""
-                sx={{
-                  mr: 2,
-                  display: { xs: "flex", md: "none" },
-                  flexGrow: 1,
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                LOGO
-              </Typography>
-              <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                {pages.map((page) => (
-                  <Button
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: "white", display: "block" }}
-                  >
-                    {page}
-                  </Button>
-                ))}
-              </Box>
-
-              <Box sx={{ flexGrow: 0 }}>
-                <Tooltip title="Account">
-                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
-                    />
-                  </IconButton>
-                </Tooltip>
-                <Menu
-                  sx={{ mt: "45px" }}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={Boolean(anchorElUser)}
-                  onClose={handleCloseUserMenu}
-                >
-                  {settings.map((setting) => (
-                    <MenuItem key={setting.label} onClick={setting.onClick}>
-                      <Typography textAlign="center">
-                        {setting.label}
-                      </Typography>
-                    </MenuItem>
-                  ))}
-                </Menu>
-              </Box>
-            </Toolbar>
-          </Container>
-        </AppBar>
-      </div>
-
+      <Nav />
       <h1>Password Overview</h1>
 
       <Box sx={{ flexGrow: 1 }}>

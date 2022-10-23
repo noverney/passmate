@@ -22,49 +22,41 @@ import { Login } from "@mui/icons-material";
 import MuiLink from '@mui/material/Link';
 import Copyright from '../utils/Copyright';
 
-
+export default function Nav() {
 const pages = ['Product', 'Pricing'];
 const settings: {label: string, onClick: () => void}[] = [{label : 'Login', onClick: () => {window.location.href="Login"}},{label : 'Password Overview', onClick: () => {window.location.href="PasswordOverview"}}, {label : 'Help', onClick: () => {window.location.href="Help"}}];
-  
 
-function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
-  }
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorElNav(event.currentTarget);
+};
+const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorElUser(event.currentTarget);
+};
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+const handleCloseNavMenu = () => {
+  setAnchorElNav(null);
+};
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+const handleCloseUserMenu = () => {
+  setAnchorElUser(null);
+};
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-  
 
-  const handleOpenUserMenuPoint = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  }
+const handleOpenUserMenuPoint = (event: React.MouseEvent<HTMLElement>) => {
+  setAnchorElUser(event.currentTarget);
+}
 
-  useEffect(() => {
-    console.log(anchorElUser)
-  }, [anchorElUser]);
+useEffect(() => {
+  console.log(anchorElUser)
+}, [anchorElUser]);
 
-  
-  return (
-    <div className="container">
+
+
+return (
+
       <div className="Navi">
       <AppBar position="static">
       <Container maxWidth="xl">
@@ -189,24 +181,6 @@ function App() {
       </Container>
     </AppBar>
       </div>
+);
 
-      <h1>Login</h1>
-
-        <Container sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-        <MuiLink color="inherit" href="PasswordOverview">
-          Overview
-        </MuiLink>{' '}
-                
-        </Container>
-
-      
-
-
-      <Copyright />
-
-    </div>
- 
-  );
-}
-
-export default App;
+              }
