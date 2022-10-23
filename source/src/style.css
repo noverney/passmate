@@ -51,6 +51,7 @@ a:hover {
 
 h1 {
   text-align: center;
+ 
 }
 
 input,
@@ -83,6 +84,31 @@ button {
 #greet-input {
   margin-right: 5px;
 }
+.cardBox{
+  align-self: center;
+  
+}
+.card{
+  margin: 10px;
+  
+}
+.cardImg{
+padding-top: 10px;
+margin-top: 10px;
+
+}
+.cardboxHight{
+  height: 400px;
+}
+
+li {
+  text-align: left;
+}
+mark {
+  background: none;
+  color: rgb(7, 7, 66);
+}
+
 
 @media (prefers-color-scheme: dark) {
   :root {
