@@ -67,7 +67,7 @@ function App() {
     { field: "id", headerName: "ID", width: 30 },
     { field: "userName", headerName: "Username", width: 160 },
     { field: "url", headerName: "Website", width: 160 },
-    { field: "CreationDate", headerName: "Creation Datee", width: 160 },
+    { field: "CreationDate", headerName: "Creation Date", width: 160 },
     {
       field: "password",
       headerName: "Password",
