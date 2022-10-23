@@ -98,7 +98,8 @@ margin-top: 10px;
 
 }
 .cardboxHight{
-  height: 400px;
+  min-height: 400px;
+  min-width: 150px;
 }
 
 li {
