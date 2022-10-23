@@ -8,7 +8,7 @@ export default function Copyright() {
     <Typography variant="body2" color="text.secondary" align="center">
     {'Copyright © '}
     <MuiLink color="inherit" href="/">
-      PassMate
+      Passmate
     </MuiLink>{' '}
     <MuiLink color="inherit" href="https://www.baselhack.ch/">
       @BaselHack
