@@ -34,6 +34,8 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import Nav from '../utils/Nav';
+import { CellWithIcon } from "../components/cell-component";
+import { AddPaddword as PasswordForm } from "../components/AddPassword.form";
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -57,6 +59,15 @@ function App() {
     setAnchorElUser(null);
   };
   
+  const [passwordFormAnchore, setPasswordFormAnchore] =
+    useState<HTMLButtonElement | null>(null);
+  const addPaddword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setPasswordFormAnchore(event.currentTarget);
+    console.log("add password", event.currentTarget);
+  };
+  const handlePasswordFormClose = () => {
+    setPasswordFormAnchore(null);
+  };
   const columns: GridColDef[] = [
     { field: "id", headerName: "ID", width: 30 },
     { field: "Name", headerName: "Username", width: 160 },
@@ -102,7 +113,19 @@ function App() {
   return (
     <div className="container">
       <Nav />
-      <h1>Password Overview</h1>
+      <Popover
+        id="PasswordPopOver"
+        open={Boolean(passwordFormAnchore)}
+        anchorEl={passwordFormAnchore}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+        onClose = {handlePasswordFormClose} 
+      >
+        <PasswordForm />
+      </Popover>     
+       <h1>Password Overview</h1>
 
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={1}>
