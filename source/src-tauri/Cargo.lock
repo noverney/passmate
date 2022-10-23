@@ -1081,8 +1081,8 @@ dependencies = [
 
 [[package]]
 name = "dcore"
-version = "0.1.0-baselhack12"
-source = "git+https://gitlab.com/ColombaLink/dev/dapsi/public/dybli/core/rusty-dcore.git?tag=0.1.0-baselhack12#cf55bdecc314ab0f2b9bff7fc9bc0a729d20848a"
+version = "0.1.0-baselhack13"
+source = "git+https://gitlab.com/ColombaLink/dev/dapsi/public/dybli/core/rusty-dcore.git?tag=0.1.0-baselhack13#904caf094b2fa352f9d79c9e4332a27be198ee97"
 dependencies = [
  "chrono",
  "der",

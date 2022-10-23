@@ -66,6 +66,11 @@ fn get_all_users_from_keystore() -> Result<Vec<User>, String>{
     API::get_all_users_from_keystore()
 }
 
+#[tauri::command]
+fn init_local_passmate(device_name: &str, fingerprint: &str) -> Result<(), String>{
+    API::init_local_passmate(device_name, fingerprint)
+}
+
 
 
 /**
@@ -94,7 +99,7 @@ fn login(fingerprint: &str) -> Result<String, String>{
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login, get_all_users_from_keystore])
+        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login, get_all_users_from_keystore, init_local_passmate])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

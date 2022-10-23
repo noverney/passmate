@@ -100,6 +100,16 @@ function App() {
             get all users
           </button>
 
+          <button type="button" onClick={async () => {
+            Api.init_local_passmate("local-dev-1", "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA").catch((e) => {
+              console.log(e);
+            }).then((result) => {
+              setMessage(JSON.stringify("ok"));
+            });
+          }}>
+            init local passmate
+          </button>
+
         </div>
       </div>
 
