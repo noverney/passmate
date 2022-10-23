@@ -59,6 +59,11 @@ class Api {
     static async sync(remoteUrl: string, fingerprint: string): Promise<void>{
         return invoke("sync", {remoteurl: remoteUrl, fingerprint: fingerprint});
     };
+
+    static async update_entry_password(fingerprint: string, uuid: string, password: string): Promise<void>{
+        return invoke("update_entry_password", {fingerprint, uuid, password });
+    };
+
 }
 
 // export default DevApi;
