@@ -35,6 +35,15 @@ export const AddPaddword: React.FunctionComponent = () => {
           variant="filled"
         />
       </div>
+      
+      <div>
+        <TextField
+          id="url"
+          label="Website Url"
+          placeholder="Url"
+          variant="filled"
+        />
+      </div>
     </Box>
   );
 };
