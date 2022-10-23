@@ -16,6 +16,10 @@ class DevApi {
     static async init_local_passmate(deviceName: string, fingerprint: string): Promise<void>{
         return Promise.resolve();
     };
+
+    static async  get_all_entries(args: {fingerprint: string}): Promise<{password: string, url: string, userName: string, uuid: string}[]>{
+        return Promise.resolve([{password: "23910234120934820387893527435", url: "https://basel.hack", userName: "BaselHack2022", uuid: "23910234120934820387893527435"}]);
+    };
 }
 
 

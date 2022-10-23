@@ -124,7 +124,8 @@ function App() {
             Api.get_all_entries( {fingerprint: "70CE8FE06D9CA9379A276F44E624A58EB3A5EAEA"}).catch((e) => {
               console.log(e);
             }).then((result) => {
-              setMessage(result);
+              console.log(result);
+              setMessage(JSON.stringify(result));
             });
           }}>
             add entry

@@ -22,6 +22,8 @@ pub struct User {
 #[derive(Debug , serde::Serialize)]
 pub struct PasswordEntry {
     #[allow(dead_code)]
+    uuid: String,
+    #[allow(dead_code)]
     user_name: String,
     #[allow(dead_code)]
     password: String,
@@ -162,7 +164,7 @@ impl API {
     }
 
 
-    pub fn get_all_entries(fingerprint: &str) -> Result<String, String>{
+    pub fn get_all_entries(fingerprint: &str) -> Result<Vec<PasswordEntry>, String>{
         let dir = "./passmate";
         let path = PathBuf::from(dir);
         let mut doc = Document::new(DocumentNewOptions {
@@ -183,7 +185,143 @@ impl API {
         if resource.is_none() {
             return Err("The passwords resource does not exist.".to_string());
         }
-        Ok(resource.unwrap().get_content())
+
+        let resource = resource.unwrap();
+
+        let mut passwordEntries = Vec::new();
+        let map = resource.store.transact().get_map("root");
+        for uuid in map.keys() {
+            println!("uuid: {}", uuid);
+            let entry = map.get(uuid);
+
+            match entry {
+                Some(entry) => {
+                    let entry = entry.to_ymap();
+                    if entry.is_none() {
+                        continue;
+                    }
+                    let entry = entry.unwrap();
+                    let user_name = entry.get("userName");
+                    let password = entry.get("password");
+                    let url = entry.get("url");
+                    let passwordEntry = PasswordEntry {
+                        user_name: user_name.unwrap().to_string(),
+                        password: password.unwrap().to_string(),
+                        url: url.unwrap().to_string(),
+                        uuid: uuid.to_string(),
+                    };
+                    passwordEntries.push(passwordEntry);
+                },
+                None => {}
+            }
+        }
+
+
+        Ok(passwordEntries)
+    }
+
+
+    pub fn update_entry_user_name(fingerprint: &str, uuid: &str, user_name: &str) -> Result<String, String>{
+        let dir = "./passmate";
+        let path = PathBuf::from(dir);
+        let mut doc = Document::new(DocumentNewOptions {
+            directory: PathBuf::from(dir),
+            identity_fingerprint: fingerprint.to_string(),
+            name: String::from("passmate"),
+        }).unwrap();
+
+        let ready_doc = doc.load();
+        if ready_doc.is_err() {
+            return match ready_doc {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+        let resource = doc.resources.get("passwords");
+        if resource.is_none() {
+            return Err("The passwords resource does not exist.".to_string());
+        }
+
+
+        let id = Uuid::new_v4().to_string();
+        // user_name: user_name.to_string(),
+        //password: password.to_string(),
+        //url: url.to_string(),
+
+        let key = format!("{}.user", id);
+        doc.update_resource_with_key_value("passwords", uuid, user_name);
+
+        Ok(id)
+    }
+
+    pub fn update_entry_password(fingerprint: &str, uuid: &str, password: &str) -> Result<String, String>{
+        let dir = "./passmate";
+        let path = PathBuf::from(dir);
+        let mut doc = Document::new(DocumentNewOptions {
+            directory: PathBuf::from(dir),
+            identity_fingerprint: fingerprint.to_string(),
+            name: String::from("passmate"),
+        }).unwrap();
+
+        let ready_doc = doc.load();
+        if ready_doc.is_err() {
+            return match ready_doc {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+        let resource = doc.resources.get("passwords");
+        if resource.is_none() {
+            return Err("The passwords resource does not exist.".to_string());
+        }
+
+
+        let id = Uuid::new_v4().to_string();
+        // user_name: user_name.to_string(),
+        //password: password.to_string(),
+        //url: url.to_string(),
+
+        let key = format!("{}.password", id);
+        doc.update_resource_with_key_value("passwords", uuid, password);
+
+        Ok(id)
+    }
+
+
+    pub fn update_entry_url(fingerprint: &str, uuid: &str, url: &str) -> Result<String, String>{
+        let dir = "./passmate";
+        let path = PathBuf::from(dir);
+        let mut doc = Document::new(DocumentNewOptions {
+            directory: PathBuf::from(dir),
+            identity_fingerprint: fingerprint.to_string(),
+            name: String::from("passmate"),
+        }).unwrap();
+
+        let ready_doc = doc.load();
+        if ready_doc.is_err() {
+            return match ready_doc {
+                Err(err) => Err(err.to_string()),
+                _ => Err("".to_string()),
+            }
+        };
+
+        let resource = doc.resources.get("passwords");
+        if resource.is_none() {
+            return Err("The passwords resource does not exist.".to_string());
+        }
+
+
+        let id = Uuid::new_v4().to_string();
+        // user_name: user_name.to_string(),
+        //password: password.to_string(),
+        //url: url.to_string(),
+
+        let key = format!("{}.url", id);
+        doc.update_resource_with_key_value("passwords", uuid, url);
+
+        Ok(id)
     }
 
     pub fn sync() -> Result<(), String>{

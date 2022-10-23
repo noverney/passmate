@@ -78,11 +78,26 @@ fn add_new_password_entry(fingerprint: &str, user_name: &str, password: &str, ur
 
 
 #[tauri::command]
-fn get_all_entries(fingerprint: &str) -> Result<String, String>{
+fn get_all_entries(fingerprint: &str) -> Result<Vec<PasswordEntry>, String>{
     API::get_all_entries(fingerprint)
 }
 
 
+#[tauri::command]
+fn update_entry_password(fingerprint: &str, uuid: &str, password: &str) -> Result<String, String>{
+    API::update_entry_password(fingerprint, uuid, password)
+}
+
+
+#[tauri::command]
+fn update_entry_url(fingerprint: &str, uuid: &str, url: &str) -> Result<String, String>{
+    API::update_entry_url(fingerprint, uuid, url)
+}
+
+#[tauri::command]
+fn update_entry_user_name(fingerprint: &str, uuid: &str, user_name: &str) -> Result<String, String>{
+    API::update_entry_user_name(fingerprint, uuid, user_name)
+}
 
 /**
  * The password it
@@ -110,7 +125,11 @@ fn login(fingerprint: &str) -> Result<String, String>{
 
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet, create_secret, get_public_key, login, get_all_users_from_keystore, init_local_passmate, add_new_password_entry, get_all_entries])
+        .invoke_handler(tauri::generate_handler![
+            greet, create_secret, get_public_key, login, get_all_users_from_keystore,
+            init_local_passmate, add_new_password_entry, get_all_entries,
+            update_entry_password, update_entry_url, update_entry_user_name
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
