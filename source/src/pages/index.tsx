@@ -24,12 +24,11 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-
+// @ts-ignore
+const s : string = false
 
 
 function App() {
-
-    
   return (
     <div className="container">
       <Nav />

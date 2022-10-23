@@ -107,7 +107,7 @@ function App() {
       </Popover>     
        <h1>Password Overview</h1>
        <Typography component="h5">
-        {fingerprint} was used
+        The Fingerprint {fingerprint} was used.
        </Typography>
 
 
